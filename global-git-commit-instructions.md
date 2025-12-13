@@ -41,6 +41,28 @@ Every commit message **MUST** follow this exact regex pattern:
 - `ci`: Changes to our CI configuration files and scripts
 - `build`: Changes that affect the build system or external dependencies
 
+### Handling Modifications
+- **Additions (`feat`, `test`, `docs`):**
+    - usage: `feat(api): add new user endpoint`
+    - usage: `test(auth): add unit tests for login`
+- **Deletions (`refactor`, `chore`, `docs`):**
+    - usage: `refactor(cleanup): remove unused variable`
+    - usage: `chore(deps): remove deprecated library`
+    - usage: `docs(api): delete outdated examples`
+- **Updates (`fix`, `style`, `revert`):**
+    - usage: `fix(ui): correct button alignment`
+    - usage: `style(lint): reformat index.js`
+
+### Complex & Combined Changes
+If a commit includes a mix of additions, deletions, and updates:
+1.  **Atomicity First:** If the changes are unrelated (e.g., fixing a UI bug *and* updating a backend dependency), **SPLIT** them into separate commits.
+2.  **Hierarchy of Intent:** If changes are related, label the commit based on the *most significant* change:
+    - `feat` (Highest Priority) > `fix` > `refactor`/`perf` > `chore`/`style` (Lowest)
+    - **Example:** Re-writing a class (Deletion/Refactor) to enable a new feature (Addition) -> Use `feat`.
+    - usage: `feat(api): replace legacy xml parser with json`
+3.  **Compound Subjects:** Describe the primary action, but implies the cleanup.
+    - usage: `refactor(auth): consolidate login logic` (Implies adding new helper, removing old duplicates)
+
 ## Safety & Security
 
 ### Data Protection
