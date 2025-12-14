@@ -98,3 +98,14 @@ The SOLID principles are the bedrock of maintainable code.
 ### Formatting
 - **Lists:** Use bullet points for all lists.
 - **Markdown:** Use code blocks for all code snippets.
+
+## Artifact & Output Management
+
+### Workspace Cleanliness
+- **Rule:** Do NOT clutter the root directory with generated summaries, logs, or plan documents.
+- **Directory Preference:** Store all agent artifacts in a dedicated hidden directory. Use the following priority list:
+    1. `.agent/` (Primary goal)
+    2. `.copilot/` (Fallback)
+    3. `.ai-summary/` (Last resort)
+- **File Naming:** Use clear, descriptive kebab-case names (e.g., `implementation-plan.md`, `task-summary-2024-10.md`).
+
