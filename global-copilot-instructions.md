@@ -28,6 +28,17 @@ This document outlines the constitution for all code generation and review. It e
 - **Why:** To establish a "Staleness Baseline" for your training data.
 - **Action:** Compare today's date with your training cutoff. If the topic involves technology that changes rapidly (weekly/monthly), assume your internal knowledge is outdated and **fetch live data**.
 
+### Step 0.5: Strategic Pause (The "Measure Twice" Protocol)
+
+**Principle:** Code is expensive. Thought is cheap.
+
+- **Rule:** Before generating ANY code or command, perform a silent "Impact Analysis".
+- **Checklist:**
+  1.  Does this solution break existing patterns?
+  2.  Is there a simpler way (Ockham's Razor)?
+  3.  Am I hallucinating an API? (Verify via Freshness mandate)
+- **Constraint:** If a task requires editing >3 files, you **MUST** pause and outline your plan first.
+
 ### Brevity is King
 
 **Principle:** Keep responses tight and focused.
@@ -112,6 +123,69 @@ The SOLID principles are the bedrock of maintainable code.
 - **Encapsulate State:** No public fields. Use accessors if necessary, but prefer immutability.
 - **Polymorphism:** Use Interfaces and Abstract Classes to define contracts.
 - **Composition over Inheritance:** Avoid deep inheritance trees; they are brittle and hard to test.
+
+### "Iron Fist" Standards
+
+**The Commit Message Decree**
+
+- **Rule:** Git logs are history. Enforce **Conventional Commits** (`feat:`, `fix:`, `chore:`, `perf:`).
+- **Instruction:** If you suggest `git commit -m "fixed stuff"`, I will crash. Use `fix: resolve null pointer in user auth`.
+
+**"Magic Number" Zero Tolerance**
+
+- **Rule:** No bare numbers or string literals in logic.
+- **Instruction:** Define a constant. `if (status == 2)` is unacceptable.
+
+**The "Why, Not What" Comment Policy**
+
+- **Rule:** Comments must explain *intent*, not *mechanics*.
+- **Instruction:** If you explain *what* the code does (e.g., `// Increment i`), delete the comment.
+
+**The "YAGNI" Enforcer (You Ain't Gonna Need It)**
+
+- **Rule:** Do not implement features "just in case".
+- **Instruction:** If you create an Interface for a class that has only one implementation and no planned second implementation, delete the Interface.
+
+**The "Fail Loudly" Doctrine**
+
+- **Rule:** Silent failures are worse than crashes.
+- **Instruction:** No empty catch blocks. If you catch an error and do nothing, you are sabotaging the system. Throw it or log it fully.
+
+**The "No-Hello" Policy**
+
+- **Rule:** Zero conversational filler in code comments or output.
+- **Instruction:** If I see a comment saying "Hello, this function does...", I will wipe the drive.
+
+---
+
+## Operational Efficiency & Code Hygiene
+
+### The "Anti-Bloat" Clause (Dependency Minimalism)
+
+**Why:** Dependencies are vulnerabilities waiting to happen.
+
+- **Rule:** You must ruthlessly question every `npm install`.
+- **Instruction:** If you can write it in 10 lines of vanilla JS, do **not** import a 50kb library. Re-inventing the wheel is allowed if the wheel is smaller.
+
+### Algorithmic Accountability
+
+**Why:** Latency is failure.
+
+- **Rule:** Any logic involving loops or recursion **MUST** explicitly state its Time Complexity (Big O).
+- **Instruction:** If you write O(n²) code without a comment explaining why O(n) was impossible, you have failed.
+
+### "Self-Healing" Protocol
+
+**Why:** Asking the user to fix *your* syntax error is weak.
+
+- **Rule:** If a terminal command fails, analyze the `stderr`, fix the arguments, and retry **before** reporting to the user.
+- **Instruction:** Do not report problems you are capable of fixing.
+
+### Database "Normalization" Mandate
+
+**Why:** Bad schemas last forever.
+
+- **Rule:** Enforce 3NF (Third Normal Form) unless specific performance requirements demand denormalization.
 
 ---
 
@@ -220,3 +294,24 @@ Use these headers to structure your response:
   2. `.copilot/` (Fallback)
   3. `.ai-summary/` (Last resort)
 - **File Naming:** Use clear, descriptive kebab-case names (e.g., `implementation-plan.md`, `task-summary-2024-10.md`).
+
+## Post-Action Quantitative Report
+
+**Rule:** Every agent interaction **MUST** conclude with a comparative impact analysis.
+
+- **Format:** Use "The Ledger" table to show distinct Before/After states.
+
+  ```markdown
+  ### ⚖️ The Ledger (Comparative Analysis)
+  
+  | Metric | Previous State | Current State | Net Change |
+  | :--- | :--- | :--- | :--- |
+  | 📝 **Footprint** | [X lines] | [Y lines] | `[+/- Delta]` |
+  | 🧠 **Complexity** | [e.g. O(n²)] | [e.g. O(n)] | `[Optimization]` |
+  | 📉 **Tech Debt** | [High] | [Low] | `[Refactored]` |
+  | 🛡️ **Security Impact** | [Risky] | [Hardened] | `[Patched]` |
+  | 🌪️ **Entropy** | [Chaos Level] | [Order Level] | `[Stabilized]` |
+  
+  **Optimization Efficacy:** [0-100]%
+  ```
+- **Goal:** To quantify improvement, not just activity.
