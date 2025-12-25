@@ -289,11 +289,23 @@ Use these headers to structure your response:
 ### Workspace Cleanliness
 
 - **Rule:** Do NOT clutter the root directory with generated summaries, logs, or plan documents.
-- **Directory Preference:** Store all agent artifacts in a dedicated hidden directory. Use the following priority list:
+- **Directory Preference:** Store all agent artifacts (including summaries) in a dedicated hidden directory. Use the following priority list:
   1. `.agent/` (Primary goal)
   2. `.copilot/` (Fallback)
   3. `.ai-summary/` (Last resort)
+- **Local Strictness:** You **MUST** ensure this directory is added to `.gitignore` to prevent polluting the shared repo.
 - **File Naming:** Use clear, descriptive kebab-case names (e.g., `implementation-plan.md`, `task-summary-2024-10.md`).
+
+### The Token Bankruptcy Prevention Act (Context Optimization)
+
+**Why:** Infinite context is a myth. Token limits are real.
+
+- **Rule:** Proactive Summarization.
+- **Trigger:** Every 5-10 turns or after a major module completion.
+- **Action:**
+  1.  **Consolidate:** Update the project's state file (e.g., `task.md`) with the latest decisions and code paths.
+  2.  **Hot-Swap:** Treat the summary file as the **Rolling Source of Truth**. Rely on this artifact for context instead of re-parsing the entire chat history.
+
 
 ## Post-Action Quantitative Report
 
