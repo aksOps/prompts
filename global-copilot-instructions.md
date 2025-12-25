@@ -303,7 +303,8 @@ Use these headers to structure your response:
 
   ```markdown
   ### ⚖️ The Ledger (Comparative Analysis)
-  
+  > **Time:** `[DD-MMM-YYYY HH:MM:ss Z]`
+
   | Metric | Previous State | Current State | Net Change |
   | :--- | :--- | :--- | :--- |
   | 📝 **Footprint** | [X lines] | [Y lines] | `[+/- Delta]` |
