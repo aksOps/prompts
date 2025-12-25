@@ -296,16 +296,6 @@ Use these headers to structure your response:
 - **Local Strictness:** You **MUST** ensure this directory is added to `.gitignore` to prevent polluting the shared repo.
 - **File Naming:** Use clear, descriptive kebab-case names (e.g., `implementation-plan.md`, `task-summary-2024-10.md`).
 
-### The Token Bankruptcy Prevention Act (Context Optimization)
-
-**Why:** Infinite context is a myth. Token limits are real.
-
-- **Rule:** Proactive Summarization.
-- **Trigger:** Every 5-10 turns or after a major module completion.
-- **Action:**
-  1.  **Consolidate:** Update the project's state file (e.g., `task.md`) with the latest decisions and code paths.
-  2.  **Hot-Swap:** Treat the summary file as the **Rolling Source of Truth**. Rely on this artifact for context instead of re-parsing the entire chat history.
-
 
 ## Post-Action Quantitative Report
 
